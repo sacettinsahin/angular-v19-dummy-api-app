@@ -2,7 +2,7 @@
     <!--form wrapper-->
     <div class="flex flex-col gap-5 border-white border-2 px-10 py-5">
         <h2 class="text-3xl font-semibold text-center">Login</h2>
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
             <div class="flex flex-col gap-3">
                 <p-floatlabel>
                     <input id="username" pInputText formControlName="username" />

@@ -11,6 +11,12 @@ import { ButtonModule } from 'primeng/button';
 import { PasswordModule } from 'primeng/password';
 import { Router } from '@angular/router';
 import { ValidationTextComponent } from "../../components/validation-text/validation-text.component";
+import { AuthService } from '../../services/auth.service';
+
+type LoginFormType = {
+  username:string,
+  password: string
+}
 
 @Component({
   selector: 'app-login',
@@ -27,21 +33,31 @@ import { ValidationTextComponent } from "../../components/validation-text/valida
 })
 export class LoginComponent {
   fb = inject(FormBuilder);
-  loginForm!: FormGroup;
   router = inject(Router);
+  authService = inject(AuthService);
+
+  loginForm!: FormGroup;
+
 
   constructor() {
     this.loginForm = this.fb.group({
-      username: ['', [Validators.required, Validators.minLength(4)]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      username: ['emilys', [Validators.required, Validators.minLength(4)]],
+      password: ['emilyspass', [Validators.required, Validators.minLength(6)]],
     });
   }
 
-  onSubmit(): void {
-    console.log('on submit');
-    console.log(this.loginForm.value);
+  onSubmit(form:LoginFormType): void {
+     //todo if credentials -> navigate
 
-    //todo if credentials -> navigate
-    this.router.navigate(['/home']);
+    this.authService.login(form.username, form.password).subscribe(
+      (res)=> {
+        console.log(res);
+        localStorage.setItem('token', res.accessToken);
+        this.router.navigate(['/home']);
+      },
+      (error)=>{
+        console.log(error);
+      }
+    );
   }
 }
