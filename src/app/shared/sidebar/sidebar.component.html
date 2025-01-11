@@ -1,1 +1,10 @@
-<p>sidebar works!</p>
+<aside class="w-64 bg-gradient-to-t from-slate-700 to-slate-900 text-white flex-shrink-0 h-full">
+    <ul class="p-4 space-y-2">
+        @for (item of items; track $index) {
+        <li>
+            <a [routerLink]="item.link" class="block cursor-pointer p-2 rounded hover:bg-gray-700">{{item.label}}</a>
+        </li>
+        }
+
+    </ul>
+</aside>
