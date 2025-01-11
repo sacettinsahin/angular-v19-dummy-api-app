@@ -1,0 +1,20 @@
+//buttons
+.primary-button {
+  background-color: var(--primary-color-bg) !important;
+  border-color: var(--primary-button-border) !important;
+  color: var(--primary-button-text) !important;
+
+  &:hover {
+    background-color: var(--primary-button-hover) !important;
+  }
+}
+
+.secondary-button {
+  background-color: var(--secondary-color-bg) !important;
+  border-color: var(--secondary-button-border) !important;
+  color: var(--secondary-button-text) !important;
+
+  &:hover {
+    background-color: var(--secondary-button-hover) !important;
+  }
+}
