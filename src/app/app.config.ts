@@ -18,6 +18,6 @@ export const appConfig: ApplicationConfig = {
         preset: Aura,
       },
     }),
-    provideHttpClient()
+    provideHttpClient(withInterceptors([tokenInterceptor])),
   ],
 };

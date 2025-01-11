@@ -16,5 +16,7 @@ export class AuthService {
     });
   }
 
-  constructor() {}
+  userInfo():Observable<any>{
+    return this.http.get<any>('https://dummyjson.com/auth/me')
+  }
 }
