@@ -1,0 +1,7 @@
+@if (form.get(field)?.touched && form.get(field)?.invalid) {
+    @if (form.get(field)?.hasError('required')) {
+        <small class="text-red-400 text-[11px]">{{field | titlecase }} is required.</small>
+    }@else if (form.get(field)?.hasError('minlength')) {
+        <small class="text-red-400 text-sm">{{field | titlecase }} must be at least 4 characters long.</small>
+    }
+}

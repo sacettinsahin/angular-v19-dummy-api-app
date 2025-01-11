@@ -1,0 +1,28 @@
+<div class="h-screen w-screen flex justify-center items-center translate-[-50%]">
+    <!--form wrapper-->
+    <div class="flex flex-col gap-5 border-white border-2 px-10 py-5">
+        <h2 class="text-3xl font-semibold text-center">Login</h2>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="flex flex-col gap-3">
+                <p-floatlabel>
+                    <input id="username" pInputText formControlName="username" />
+                    <label for="username">Username</label>
+                </p-floatlabel>
+                <!-- Username error message -->
+                <app-validation-text [form]="loginForm" field="username"></app-validation-text>
+
+                <p-floatlabel>
+                    <p-password id="password" [feedback]="false" formControlName="password" />
+                    <label for="password">Password</label>
+                </p-floatlabel>
+                <!-- Password error message -->
+                <app-validation-text [form]="loginForm" field="password"></app-validation-text>
+            </div>
+
+            <div class="flex justify-end">
+                <p-button label="Submit" type="submit" [disabled]="loginForm.invalid"  />
+            </div>
+
+        </form>
+    </div>
+</div>
