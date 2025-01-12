@@ -49,11 +49,11 @@
             <td>{{ user.firstName }}</td>
             <td>{{ user.lastName }}</td>
             <td>{{ user.age }}</td>
-            <td>{{ user.birthDate }}</td>
-            <td>{{ user.phone }}</td>
+            <td>{{ user.birthDate | birthdate }}</td>
+            <td>{{ user.phone | phone }}</td>
             <td>{{ user.role }}</td>
             <td>{{ user.email }}</td>
-            <td>{{ user.gender }}</td>
+            <td>{{ user.gender | gender }}</td>
             <!-- <td>{{user.userAgent}}</td> -->
         </tr>
     </ng-template>
