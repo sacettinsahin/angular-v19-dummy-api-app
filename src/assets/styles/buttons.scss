@@ -1,0 +1,21 @@
+/* Buttons */
+.primary-button {
+    background-color: var(--primary-bg) !important;
+    border-color: var(--primary-border) !important;
+    color: white !important;
+  
+    &:hover {
+      background-color: var(--primary-hover) !important;
+    }
+  }
+  
+  .secondary-button {
+    background-color: var(--secondary-bg) !important;
+    border-color: var(--secondary-border) !important;
+    color: white !important;
+  
+    &:hover {
+      background-color: var(--secondary-hover) !important;
+    }
+  }
+  
