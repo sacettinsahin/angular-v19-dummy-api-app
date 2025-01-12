@@ -1,0 +1,18 @@
+//paginator
+.p-paginator-page-selected {
+  color: var(--dark)!important;
+  background-color: var(--primary-soft)!important;
+}
+
+//sorting
+.p-datatable-thead > tr > th.p-datatable-column-sorted{
+  color: var(--dark)!important;
+  background-color: var(--primary-soft)!important;
+  border: var(--primary-border);
+}
+
+p-sorticon{
+  svg{
+    width: 12px!important;
+  }
+}
