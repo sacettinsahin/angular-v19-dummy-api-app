@@ -2,59 +2,64 @@
 
 @switch (isLoading()) {
 @case (true) {
-<app-spinner></app-spinner>}
+<app-spinner></app-spinner>
+}
 @case (false) {
 <!-- users table-->
-<p-table [value]="users()" size="small" showGridlines [tableStyle]="{ 'min-width': '50rem'}" [paginator]="true"
-    [rows]="10" [rowsPerPageOptions]="[5, 10, 20]" [resizableColumns]="true" stripedRows
-    styleClass="p-datatable-gridlines shadow-xl" [scrollable]="true">
+<p-table [value]="users()" size="small" showGridlines
+    [tableStyle]="{ 'min-width': '50rem', 'padding': '15px', 'backgroundColor': '#fff'}" [paginator]="true" [rows]="10"
+    [rowsPerPageOptions]="[5, 10, 20]" [resizableColumns]="true" stripedRows
+    styleClass="p-datatable-gridlines shadow-xl" [scrollable]="true" [columns]="selectedColumns">
+    
+    <ng-template #caption>
+        <p-multiselect size="small" display="chip" [options]="cols" [(ngModel)]="selectedColumns"  optionLabel="header"
+                placeholder="Choose Columns" (onChange)="change($event)" />
+    </ng-template>
+
+    <!--header field-->
     <ng-template #header let-columns>
         <tr>
-            <th pResizableColumn pSortableColumn="id">
-                ID <p-sortIcon field="id" class="ml-3" />
-            </th>
-            <th pResizableColumn pSortableColumn="firstName">
-                First Name <p-sortIcon field="firstName" class="ml-3" />
-            </th>
-            <th pResizableColumn pSortableColumn="lastName">
-                Last Name <p-sortIcon field="lastName" class="ml-3" />
-            </th>
-            <th pResizableColumn>
-                Age
-            </th>
-            <th pResizableColumn>
-                Date of Birth
-            </th>
-            <th pResizableColumn>
-                Phone
-            </th>
-            <th pResizableColumn>
-                Role
-            </th>
-            <th pResizableColumn>
-                Email
-            </th>
-            <th pResizableColumn>
-                Gender
-            </th>
-            <!-- <th pResizableColumn>
-                User Agent
-            </th> -->
-
+            @for (col of cols; track $index) {
+                @if (showColumn(col.field)){
+                    @switch (col.sortable) {
+                        @case (true) {
+                            <th pResizableColumn [pSortableColumn]="col.field">
+                                {{col.header}}
+                                <p-sortIcon [field]="col.field" class="ml-3"></p-sortIcon>
+                            </th>
+                        }
+                        @case (false) {
+                            <th pResizableColumn>
+                                {{col.header}}
+                            </th>
+                        }
+                    }
+                }
+                
+            }
         </tr>
     </ng-template>
+    <!--body field-->
     <ng-template #body let-user>
         <tr>
-            <td>{{ user.id }}</td>
-            <td>{{ user.firstName }}</td>
-            <td>{{ user.lastName }}</td>
-            <td>{{ user.age }}</td>
-            <td>{{ user.birthDate | birthdate }}</td>
-            <td>{{ user.phone | phone }}</td>
-            <td>{{ user.role }}</td>
-            <td>{{ user.email }}</td>
-            <td>{{ user.gender | gender }}</td>
-            <!-- <td>{{user.userAgent}}</td> -->
+            @for (col of cols; track $index) {
+                @if (showColumn(col.field)) {
+                    @switch (col.field) {
+                        @case('birthDate'){
+                            <td>{{ user[col.field] | birthdate }}</td>
+                        }
+                        @case('phone'){
+                            <td> {{ user[col.field] | phone }}</td>
+                        }
+                        @case('gender'){
+                            <td>{{ user[col.field] | gender }}</td>
+                        }
+                        @default{
+                            <td>{{ user[col.field] }}</td>
+                        }
+                    }
+                }
+            }
         </tr>
     </ng-template>
 </p-table>
