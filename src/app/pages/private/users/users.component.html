@@ -1,0 +1,14 @@
+<h1>User List</h1>
+<br>
+<hr><br>
+@switch (isLoading()) {
+@case (true) {
+<app-spinner></app-spinner>}
+@case (false) {
+<ul>
+    @for (user of users(); track $index) {
+    <li>{{user.id}} - {{user.firstName}} {{user.lastName}}</li>
+    }
+</ul>
+}
+}
