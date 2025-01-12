@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterModule } from '@angular/router';
 
 type Item = {
   label: string;
@@ -8,7 +8,7 @@ type Item = {
 
 @Component({
   selector: 'app-sidebar',
-  imports: [RouterLink],
+  imports: [RouterLink, RouterModule],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',
 })
@@ -25,6 +25,10 @@ export class SidebarComponent {
     {
       label: 'Categories',
       link: '/categories',
+    },
+    {
+      label: 'Users',
+      link: '/users',
     },
   ];
 }
