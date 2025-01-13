@@ -6,16 +6,38 @@
 @use "./assets/styles/buttons" as *;
 @use "./assets/styles/tables" as *;
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
-body {
-    font-family: 'Poppins', sans-serif;
-}
-
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 @import "primeicons/primeicons.css";
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+// Scrollbar common
+::-webkit-scrollbar {
+    width: 8px;
+    height: 6px;
+  }
+  
+// Scrollbar background
+  ::-webkit-scrollbar-track {
+    background: #bbb;
+    border-radius:10px;
+  }
+  
+// Scroll bar
+  ::-webkit-scrollbar-thumb {
+    background: #5c5d5f;
+    border-radius: 5px;
+  }
+  
+// Scroll bar hover
+  ::-webkit-scrollbar-thumb:hover {
+    background:#434344 ;
+  }
+
+
 
