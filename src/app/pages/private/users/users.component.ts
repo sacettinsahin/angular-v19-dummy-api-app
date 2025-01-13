@@ -4,9 +4,6 @@ import { UsersService } from '../../../services/users.service';
 import { SpinnerComponent } from '../../../components/spinner/spinner.component';
 import { TableModule } from 'primeng/table';
 import { PageHeaderComponent } from '../../../components/page-header/page-header.component';
-import { BirthdatePipe } from '../../../pipes/birthdate.pipe';
-import { GenderPipe } from '../../../pipes/gender.pipe';
-import { PhonePipe } from '../../../pipes/phone.pipe';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
@@ -30,9 +27,9 @@ type Column = {
     InputTextModule,
     MultiSelectModule,
     PageHeaderComponent,
-    BirthdatePipe,
-    GenderPipe,
-    PhonePipe,
+    // BirthdatePipe,
+    // GenderPipe,
+    // PhonePipe,
     FormsModule,
     ReactiveFormsModule
   ],
@@ -40,7 +37,7 @@ type Column = {
   styleUrl: './users.component.scss',
 })
 export class UsersComponent implements OnInit {
-  users = signal<User[]>([]);
+  users:User[]=[];
   usersService = inject(UsersService);
   isLoading = signal<boolean>(false);
 
@@ -51,21 +48,27 @@ export class UsersComponent implements OnInit {
     this.isLoading.set(true);
     this.usersService.getUsers().subscribe(
       (res) => {
-        this.users.set(res.users);
+        this.users = res.users.map(item=>({
+          ...item,
+          modBirthDate: this.modifyResponse(item.birthDate, 'birthdate'),
+          modPhone: this.modifyResponse(item.phone, 'phone'),
+          modGender: this.modifyResponse(item.gender, 'gender')
+        }));
       },
       (err) => console.log(err),
       () => this.isLoading.set(false)
     );
+
     this.cols =[
       {field:"id", header:"ID", sortable:true, selected:true},
       {field:"firstName", header:"First Name", sortable:true, selected:true},
       {field:"lastName", header:"Last Name", sortable:true, selected:true},
       {field:"age", header:"Age", sortable:true, selected:true},
-      {field:"birthDate", header:"Date of Birth", sortable:false, selected:true},
-      {field:"phone", header:"Phone", sortable:false, selected:true},
+      {field:"modBirthDate", header:"Date of Birth", sortable:false, selected:true},
+      {field:"modPhone", header:"Phone", sortable:false, selected:true},
       {field:"role", header:"Role", sortable:true, selected:true},
       {field:"email", header:"Email", sortable:false, selected:true},
-      {field:"gender", header:"Gender", sortable:true, selected:true},
+      {field:"modGender", header:"Gender", sortable:true, selected:true},
     ];
 
     //select columns;
@@ -79,5 +82,34 @@ export class UsersComponent implements OnInit {
 
   showColumn(field:string): boolean {
     return this.selectedColumns.some(col => col.field === `${field}`);
+  }
+
+  filterGlobal(event: Event, dt: any) {
+    const input = event.target as HTMLInputElement;
+    dt.filterGlobal(input?.value || '', 'contains');
+  }
+
+  modifyResponse(value:string, field:'birthdate' | 'phone' | 'gender'):string{
+    if(!value) return '-';
+
+    switch(field){
+      case 'birthdate':
+        const arr = value.split("-")
+        const year = arr[0];
+        const month = arr[1].padStart(2, '0');
+        const day = arr[2].padStart(2, '0')
+        return `${day}/${month}/${year}`;
+      
+      case 'phone':
+        const countryCode = value.split(" ")[0];
+        const secondPart = value.split(" ")[1];
+        const code = countryCode.split("+")[1];
+        return `+(${code}) ${secondPart}`
+
+      case 'gender':
+        return value.charAt(0).toUpperCase();
+      
+    }
+
   }
 }

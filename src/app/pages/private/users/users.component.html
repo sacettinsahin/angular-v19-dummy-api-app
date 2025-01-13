@@ -6,14 +6,30 @@
 }
 @case (false) {
 <!-- users table-->
-<p-table [value]="users()" size="small" showGridlines
+<p-table #dt [value]="users" size="small" showGridlines
     [tableStyle]="{ 'min-width': '50rem', 'padding': '15px', 'backgroundColor': '#fff'}" [paginator]="true" [rows]="10"
     [rowsPerPageOptions]="[5, 10, 20]" [resizableColumns]="true" stripedRows
-    styleClass="p-datatable-gridlines shadow-xl" [scrollable]="true" [columns]="selectedColumns">
-    
+    styleClass="p-datatable-gridlines shadow-xl" [responsive]="true" [responsiveLayout]="'scroll'" [columns]="selectedColumns"
+    [globalFilterFields]="['firstName', 'lastName', 'age', 'modBirthDate','modPhone', 'role', 'email', 'modGender' ]"
+    >
+    <!--caption field-->
     <ng-template #caption>
-        <p-multiselect size="small" display="chip" [options]="cols" [(ngModel)]="selectedColumns"  optionLabel="header"
+        <div class="flex justify-between">
+            <p-multiselect size="small" display="chip" [options]="cols" [(ngModel)]="selectedColumns" optionLabel="header"
                 placeholder="Choose Columns" (onChange)="change($event)" />
+            
+                <p-iconfield iconPosition="left" class="ml-auto">
+                    <p-inputicon>
+                        <i class="pi pi-search"></i>
+                    </p-inputicon>
+                    <input
+                        pInputText
+                        type="text"
+                        (input)="filterGlobal($event, dt)"
+                        placeholder="Search keyword"
+                    />
+                </p-iconfield>
+        </div>
     </ng-template>
 
     <!--header field-->
@@ -39,25 +55,13 @@
             }
         </tr>
     </ng-template>
+
     <!--body field-->
     <ng-template #body let-user>
         <tr>
             @for (col of cols; track $index) {
                 @if (showColumn(col.field)) {
-                    @switch (col.field) {
-                        @case('birthDate'){
-                            <td>{{ user[col.field] | birthdate }}</td>
-                        }
-                        @case('phone'){
-                            <td> {{ user[col.field] | phone }}</td>
-                        }
-                        @case('gender'){
-                            <td>{{ user[col.field] | gender }}</td>
-                        }
-                        @default{
-                            <td>{{ user[col.field] }}</td>
-                        }
-                    }
+                    <td>{{ user[col.field] }}</td>
                 }
             }
         </tr>
