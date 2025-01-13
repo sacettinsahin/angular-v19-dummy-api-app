@@ -1,8 +1,8 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { User } from '../../../models/users.model';
 import { UsersService } from '../../../services/users.service';
 import { SpinnerComponent } from '../../../components/spinner/spinner.component';
-import { TableModule } from 'primeng/table';
+import { TableModule, TablePageEvent } from 'primeng/table';
 import { PageHeaderComponent } from '../../../components/page-header/page-header.component';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
@@ -39,13 +39,13 @@ type Column = {
 export class UsersComponent implements OnInit {
   users:User[]=[];
   usersService = inject(UsersService);
-  isLoading = signal<boolean>(false);
+  isLoading:boolean = false;
 
   selectedColumns:Column[] = [];
   cols:Column[] = [];
 
   ngOnInit(): void {
-    this.isLoading.set(true);
+    this.isLoading = true;
     this.usersService.getUsers().subscribe(
       (res) => {
         this.users = res.users.map(item=>({
@@ -56,7 +56,7 @@ export class UsersComponent implements OnInit {
         }));
       },
       (err) => console.log(err),
-      () => this.isLoading.set(false)
+      () => this.isLoading = false
     );
 
     this.cols =[
@@ -75,17 +75,21 @@ export class UsersComponent implements OnInit {
     this.selectedColumns = this.cols;
   }
 
-  change($event:any){
+  change($event:any):void{
     //console.log($event.itemValue)
     if(!$event.itemValue) return;
     $event.itemValue.selected = !$event.itemValue.selected;
+  }
+
+  updatePage($event: TablePageEvent):void{
+    //$event: {"first": 0,"rows": 5}
   }
 
   showColumn(field:string): boolean {
     return this.selectedColumns.some(col => col.field === `${field}`);
   }
 
-  filterGlobal(event: Event, dt: any) {
+  filterGlobal(event: Event, dt: any):void{
     const input = event.target as HTMLInputElement;
     dt.filterGlobal(input?.value || '', 'contains');
   }

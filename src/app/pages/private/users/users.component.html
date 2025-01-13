@@ -1,6 +1,6 @@
 <page-header title="User List"></page-header>
 
-@switch (isLoading()) {
+@switch (isLoading) {
 @case (true) {
 <app-spinner></app-spinner>
 }
@@ -11,6 +11,7 @@
     [rowsPerPageOptions]="[5, 10, 20]" [resizableColumns]="true" stripedRows
     styleClass="p-datatable-gridlines shadow-xl" [responsive]="true" [responsiveLayout]="'scroll'" [columns]="selectedColumns"
     [globalFilterFields]="['firstName', 'lastName', 'age', 'modBirthDate','modPhone', 'role', 'email', 'modGender' ]"
+    (onPage)="updatePage($event)"
     >
     <!--caption field-->
     <ng-template #caption>
