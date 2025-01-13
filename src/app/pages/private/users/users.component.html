@@ -1,4 +1,4 @@
-<page-header title="User List"></page-header>
+<page-header header="User List" page="users" (btnClick)="togglePopup()"></page-header>
 
 @switch (isLoading) {
 @case (true) {
@@ -7,7 +7,7 @@
 @case (false) {
 <!-- users table-->
 <p-table #dt [value]="users" size="small" showGridlines
-    [tableStyle]="{ 'min-width': '50rem', 'padding': '15px', 'backgroundColor': '#fff'}" [paginator]="true" [rows]="10"
+    [tableStyle]="{ 'min-width': '50rem', 'padding': '25px', 'backgroundColor': '#fff'}" [paginator]="true" [rows]="10"
     [rowsPerPageOptions]="[5, 10, 20]" [resizableColumns]="true" stripedRows
     styleClass="p-datatable-gridlines shadow-xl" [responsive]="true" [responsiveLayout]="'scroll'" [columns]="selectedColumns"
     [globalFilterFields]="['firstName', 'lastName', 'age', 'modBirthDate','modPhone', 'role', 'email', 'modGender' ]"
@@ -18,7 +18,6 @@
         <div class="flex justify-between">
             <p-multiselect size="small" display="chip" [options]="cols" [(ngModel)]="selectedColumns" optionLabel="header"
                 placeholder="Choose Columns" (onChange)="change($event)" />
-            
                 <p-iconfield iconPosition="left" class="ml-auto">
                     <p-inputicon>
                         <i class="pi pi-search"></i>
@@ -62,7 +61,7 @@
         <tr>
             @for (col of cols; track $index) {
                 @if (showColumn(col.field)) {
-                    <td>{{ user[col.field] }}</td>
+                    <td class="text-sm">{{ user[col.field] }}</td>
                 }
             }
         </tr>

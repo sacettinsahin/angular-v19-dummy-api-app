@@ -7,7 +7,7 @@ import { PageHeaderComponent } from '../../../components/page-header/page-header
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
-import { MultiSelectModule } from 'primeng/multiselect';
+import { MultiSelectChangeEvent, MultiSelectModule } from 'primeng/multiselect';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 type Column = {
@@ -44,6 +44,8 @@ export class UsersComponent implements OnInit {
   selectedColumns:Column[] = [];
   cols:Column[] = [];
 
+  
+
   ngOnInit(): void {
     this.isLoading = true;
     this.usersService.getUsers().subscribe(
@@ -75,8 +77,7 @@ export class UsersComponent implements OnInit {
     this.selectedColumns = this.cols;
   }
 
-  change($event:any):void{
-    //console.log($event.itemValue)
+  change($event:MultiSelectChangeEvent):void{
     if(!$event.itemValue) return;
     $event.itemValue.selected = !$event.itemValue.selected;
   }
@@ -115,6 +116,9 @@ export class UsersComponent implements OnInit {
         return value.charAt(0).toUpperCase();
       
     }
+  }
 
+  togglePopup():void{
+    //console.log("toggle popup")
   }
 }
