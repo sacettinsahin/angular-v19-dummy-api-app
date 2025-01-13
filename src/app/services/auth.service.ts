@@ -13,10 +13,22 @@ export class AuthService {
     return this.http.post<Auth>('https://dummyjson.com/auth/login', {
       username,
       password,
+      expiresInMins: 1
     });
   }
 
-  userInfo():Observable<any>{
-    return this.http.get<any>('https://dummyjson.com/auth/me')
+  logout():void{
+    localStorage.removeItem('token');
+    localStorage.removeItem('refreshToken');
+    window.location.href = '/login';
   }
+
+  refreshToken():Observable<any>{
+    const refreshToken = localStorage.getItem('refreshToken');
+    return this.http.post('https://dummyjson.com/auth/refresh', {
+      refreshToken: refreshToken 
+    })
+  }
+
+  
 }

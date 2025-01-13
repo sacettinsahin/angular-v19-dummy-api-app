@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import {  RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -9,11 +10,10 @@ import { ButtonModule } from 'primeng/button';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-  router = inject(Router)
+  authService = inject(AuthService);
 
   logout():void{
-    localStorage.removeItem("token");
-    this.router.navigate(['']);
+    this.authService.logout();
   }
 
 }

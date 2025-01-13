@@ -47,12 +47,11 @@ export class LoginComponent {
   }
 
   onSubmit(form:LoginFormType): void {
-     //todo if credentials -> navigate
-
     this.authService.login(form.username, form.password).subscribe(
       (res)=> {
         console.log(res);
         localStorage.setItem('token', res.accessToken);
+        localStorage.setItem('refreshToken', res.refreshToken);
         this.router.navigate(['/home']);
       },
       (error)=>{

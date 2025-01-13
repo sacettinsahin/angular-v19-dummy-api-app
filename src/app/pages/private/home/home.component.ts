@@ -8,11 +8,5 @@ import { AuthService } from '../../../services/auth.service';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit{
-
-  authService = inject(AuthService)
-  ngOnInit(): void {
-    this.authService.userInfo().subscribe(
-      res=> console.log(res)
-    )
-  }
+  ngOnInit(): void {}
 }
