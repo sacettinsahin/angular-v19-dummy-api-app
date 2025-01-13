@@ -1,8 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 
+
+
 @use "./assets/styles/variables" as *;
 @use "./assets/styles/buttons" as *;
 @use "./assets/styles/tables" as *;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
 
 
 @tailwind base;

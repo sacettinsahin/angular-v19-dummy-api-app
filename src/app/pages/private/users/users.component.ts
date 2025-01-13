@@ -77,6 +77,7 @@ export class UsersComponent implements OnInit {
 
   change($event:any){
     //console.log($event.itemValue)
+    if(!$event.itemValue) return;
     $event.itemValue.selected = !$event.itemValue.selected;
   }
 
