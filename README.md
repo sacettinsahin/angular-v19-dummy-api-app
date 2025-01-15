@@ -9,11 +9,11 @@
 ## 🖼️ Screenshots
 
 
-![App Screenshot 1](./src/assets/readme/users.png)
-![App Screenshot 2](./src/assets/readme/users-feature.png)
-![App Screenshot 3](./src/assets/readme/products.png)
-![App Screenshot 4](./src/assets/readme/products-update.png)
-![App Screenshot 5](./src/assets/readme/home.png)
+![App Screenshot 1](./src/assets/readme/users.png | width=500)
+![App Screenshot 2](./src/assets/readme/users-feature.png | width=500)
+![App Screenshot 3](./src/assets/readme/products.png | width=500)
+![App Screenshot 4](./src/assets/readme/products-update.png | width=500)
+![App Screenshot 5](./src/assets/readme/home.png | width=500)
 
 
 
