@@ -5,3 +5,16 @@
     post: /products ,
     put: /products/id
     delete: products/id
+
+## 🖼️ Screenshots
+
+
+![App Screenshot 1](./src/assets/readme/users.png)
+![App Screenshot 2](./src/assets/readme/users-feature.png)
+![App Screenshot 3](./src/assets/readme/products.png)
+![App Screenshot 4](./src/assets/readme/products-update.png)
+![App Screenshot 5](./src/assets/readme/home.png)
+
+
+
+---
