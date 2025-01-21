@@ -25,7 +25,7 @@
   [loading]="loading"
 >
   <ng-template #caption>
-    <div class="flex justify-end px-[25px]">
+    <div class="flex justify-end px-[25px] py-[15px]">
       <p-button label="Add" styleClass="primary-button" size="small" (onClick)="onShowAdd()">
         <i class="pi pi-plus"></i>
       </p-button>
@@ -79,27 +79,24 @@
 <!--add popup-->
 <table-dialog header="Add New Product" width="30rem" [isShown]="showAdd" (hide)="onHide($event, 'add')">
   <form [formGroup]="addForm">
-    <div class="flex flex-col gap-2">
+    <input-wrapper>
       <label for="name">Name</label>
       <input pInputText id="name" formControlName="name" autocomplete="off" />
-    </div>
-    <br>
-    <div class="flex flex-col gap-2">
+    </input-wrapper>
+    <input-wrapper>
       <label for="avatar">Avatar</label>
       <input pInputText id="avatar" formControlName="avatar" autocomplete="off" />
-    </div>
-    <br>
-    <div class="flex flex-col gap-2">
+    </input-wrapper> <input-wrapper>
       <label for="price">Price</label>
       <input pInputText id="price" formControlName="price" autocomplete="off" />
-    </div>
-    <br>
-    <div class="flex flex-col gap-2">
+    </input-wrapper> <input-wrapper>
       <label for="description">Description</label>
-      <input pInputText id="description" formControlName="description"  autocomplete="off" />
-    </div>
-      <br>
-      <p-button type="submit" size="small" (onClick)="addProduct(addForm.value)" label="Add" styleClass="primary-button"></p-button>
+      <input pInputText id="description" formControlName="description" autocomplete="off" />
+    </input-wrapper>
+    <footer class="flex justify-end">
+      <p-button type="submit" size="small" (onClick)="addProduct(addForm.value)" label="Add"
+      styleClass="primary-button"></p-button>
+    </footer>
   </form>
 </table-dialog>
 
@@ -132,7 +129,9 @@
 <table-dialog header="Delete Product" width="30rem" [isShown]="showDelete" (hide)="onHide($event, 'delete')">
   <h1>Do you want to delete this item?</h1>
 
-  <p-button type="submit" size="small" (onClick)="deleteProduct()" label="Delete" styleClass="primary-button"></p-button>
+  <footer class="flex flex-end">
+    <p-button type="submit" size="small" (onClick)="deleteProduct()" label="Delete" styleClass="primary-button"></p-button>
+  </footer>
 
 </table-dialog>
 
