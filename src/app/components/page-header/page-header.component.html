@@ -1,29 +1,81 @@
 <div class="flex justify-between items-center shadow-md">
-    <h1 class="text-white font-semibold shadow-sm" style="font-size: 30px;">{{header()}}</h1>
-    <p-button label="Show Features" size="small"  styleClass="secondary-button" (onClick)="clickButton($event)"></p-button>
+  <h1 class="text-white font-semibold text-shadow-md" style="font-size: 30px">
+    {{ header() }}
+  </h1>
+  <p-button
+    label="Show Features"
+    size="small"
+    styleClass="secondary-button"
+    (onClick)="clickButton($event)"
+  ></p-button>
 </div>
-<hr><br>
+<hr />
+<br />
 
 <!--dialog section -->
-@switch (page()) {
-    @case ('users') {
-        <p-dialog header="Page Features"  [modal]="true" [(visible)]="isShown" [style]="{ width: '50rem', padding: '10px 15px' }" [dismissableMask]="true">
-            <ul>
-                <li>- When the user data is being fetched, a loading spinner is displayed on the page, and once the process is complete, the users are shown in the table.</li>
-                <li>- This table contains 3 main fields as caption, data field and paginator.</li>
-                <li>- There is a multi selectable dropdown in the table to show or hide columns.</li>
-                <li>- On the top right side in the table is a global search input. You can filter all columns using this element.</li>
-                <li>- Table columns with icons are sortable.</li>
-                <li>- Table columns width be able to modified with drag and drop from header. If you refresh browser or change the route, the column widths return to their initial size.</li>
-                <li>- Date of birth, phone and gender column's data modified for user experience. (work as pipe)</li>
-                <li>- The table has a responsive design. If the screen size is insufficient, a scrollbar appears between the data field and paginator.</li>
-                <li>- User can paginate the data and change the row options.</li>
-            </ul>
-            <ng-template #footer>
-                <span class="text-red-500 font-medium">Note:</span>
-                <span>If you decide to develop this table and you have large data sets, you can implement lazy loading for the data. However, in this case, global filtering may not work effectively.</span>
-            </ng-template>
-        
-        </p-dialog>
-    }
-}
+@switch (page()) { @case ('users') {
+<p-dialog
+  header="Page Features"
+  [modal]="true"
+  [(visible)]="isShown"
+  [style]="{ width: '50rem', padding: '10px 15px' }"
+  [dismissableMask]="true"
+  class="page-header-dialog"
+>
+  <ul>
+    <li>
+      - When the user data is being fetched, a loading spinner is displayed on
+      the page, and once the process is complete, the users are shown in the
+      table.
+    </li>
+    <li>
+      - This table contains 3 main fields as caption, data field and paginator.
+    </li>
+    <li>
+      - There is a multi selectable dropdown in the table to show or hide
+      columns.
+    </li>
+    <li>
+      - On the top right side in the table is a global search input. You can
+      filter all columns using this element.
+    </li>
+    <li>- Table columns with icons are sortable.</li>
+    <li>
+      - Table columns width be able to modified with drag and drop from header.
+      If you refresh browser or change the route, the column widths return to
+      their initial size.
+    </li>
+    <li>
+      - Date of birth, phone and gender column's data modified for user
+      experience. (work as pipe)
+    </li>
+    <li>
+      - The table has a responsive design. If the screen size is insufficient, a
+      scrollbar appears between the data field and paginator.
+    </li>
+    <li>- User can paginate the data and change the row options.</li>
+  </ul>
+  <ng-template #footer>
+    <span class="text-red-500 font-medium">Note:</span>
+    <span
+      >If you decide to develop this table and you have large data sets, you can
+      implement lazy loading for the data. However, in this case, global
+      filtering may not work effectively.</span
+    >
+  </ng-template>
+</p-dialog>
+} @case ('products'){
+<p-dialog
+  header="Page Features"
+  [modal]="true"
+  [(visible)]="isShown"
+  [style]="{ width: '50rem', padding: '10px 15px' }"
+  [dismissableMask]="true"
+>
+  <ul>
+    <li>- Users perform CRUD operations.</li>
+    
+  </ul>
+  <ng-template #footer></ng-template>
+</p-dialog>
+} }

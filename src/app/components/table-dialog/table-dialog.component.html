@@ -1,0 +1,16 @@
+<p-dialog
+  [header]="header"
+  [modal]="true"
+  [(visible)]="isShown"
+  [style]="{ width: width, padding: '10px 15px', backgroundColor:'#e6e6e6' }"
+  [dismissableMask]="true"
+  (onHide)="closePopup()"
+>
+  <div class="py-3">
+    <ng-content></ng-content>
+  </div>
+
+  <ng-template #footer>
+    <ng-content select="footer"></ng-content>
+  </ng-template>
+</p-dialog>

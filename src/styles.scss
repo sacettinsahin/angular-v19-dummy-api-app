@@ -39,5 +39,30 @@ body {
     background:#434344 ;
   }
 
+//! form elements.
+.input-wrapper{
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 
+  label{
+    color:#434344;
+    font-weight: 500;
+    padding-left: 8px;
+    font-size: 14px;
+  }
+  input{
+    padding: 8px;
+    border-radius: 6px;
+    font-size: 14px;
+    border:1px solid #d1d5db;
+    font-weight: 400;
+    color:#374151;
 
+    &:focus{
+      outline: 2px solid var(--primary)!important;
+    }
+
+  }
+}
