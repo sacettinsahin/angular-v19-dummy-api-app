@@ -78,4 +78,18 @@
   </ul>
   <ng-template #footer></ng-template>
 </p-dialog>
+}
+@default {
+  <p-dialog
+  header="Page Features"
+  [modal]="true"
+  [(visible)]="isShown"
+  [style]="{ width: '50rem', padding: '10px 15px' }"
+  [dismissableMask]="true"
+>
+  <ul>
+    <li>- ...</li>
+  </ul>
+  <ng-template #footer></ng-template>
+</p-dialog>
 } }
