@@ -19,16 +19,16 @@ export class SidebarComponent {
       link: '/home',
     },
     {
+      label: 'Users',
+      link: '/users',
+    },
+    {
       label: 'Products',
       link: '/products',
     },
     {
       label: 'Categories',
       link: '/categories',
-    },
-    {
-      label: 'Users',
-      link: '/users',
     },
   ];
 }
