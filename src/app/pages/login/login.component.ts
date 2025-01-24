@@ -37,6 +37,9 @@ export class LoginComponent {
   authService = inject(AuthService);
 
   loginForm!: FormGroup;
+  loginMessage: string | undefined;
+
+  isLoading:boolean = false;
 
 
   constructor() {
@@ -47,15 +50,21 @@ export class LoginComponent {
   }
 
   onSubmit(form:LoginFormType): void {
+    this.loginMessage=undefined;
+    this.isLoading = true;
     this.authService.login(form.username, form.password).subscribe(
       (res)=> {
         console.log(res);
         localStorage.setItem('token', res.accessToken);
         localStorage.setItem('refreshToken', res.refreshToken);
         this.router.navigate(['/home']);
+        this.isLoading = false;
+
       },
       (error)=>{
         console.log(error);
+        this.loginMessage = error.error.message;
+        this.isLoading = false;
       }
     );
   }
