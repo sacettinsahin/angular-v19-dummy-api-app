@@ -1,28 +1,49 @@
-<div class="h-screen w-screen flex justify-center items-center translate-[-50%]">
-    <!--form wrapper-->
-    <div class="flex flex-col gap-5 border-white border-2 px-10 py-5">
-        <h2 class="text-3xl font-semibold text-center">Login</h2>
+<div class="h-screen w-screen flex justify-center items-center bg-gradient-to-br  from-slate-500 to-slate-900">
+    <!-- Form Wrapper -->
+    <div class="flex flex-col gap-10 border-white border-2 px-10 py-8 rounded-lg shadow-lg bg-white min-w-[400px]">
+        <h2 class="text-3xl font-semibold text-center text-gray-800">Login</h2>
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
-            <div class="flex flex-col gap-3">
-                <p-floatlabel>
-                    <input id="username" pInputText formControlName="username" />
-                    <label for="username">Username</label>
-                </p-floatlabel>
-                <!-- Username error message -->
-                <app-validation-text [form]="loginForm" field="username"></app-validation-text>
+            <div class="flex flex-col gap-10">
+                <!-- Username Field -->
+                <div class="relative">
+                    <p-floatlabel>
+                        <input
+                            id="username"
+                            pInputText
+                            formControlName="username"
+                            class="w-full px-4 py-2 text-gray-800 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        />
+                        <label for="username" class="text-gray-600">Username</label>
+                    </p-floatlabel>
+                    <app-validation-text class="absolute top-[38px] left-3" [form]="loginForm" field="username"></app-validation-text>
+                </div>
 
-                <p-floatlabel>
-                    <p-password id="password" [feedback]="false" formControlName="password" />
-                    <label for="password">Password</label>
-                </p-floatlabel>
-                <!-- Password error message -->
-                <app-validation-text [form]="loginForm" field="password"></app-validation-text>
+                <!-- Password Field -->
+                <div class="relative">
+                    <p-floatlabel>
+                        <p-password
+                            id="password"
+                            [feedback]="false"
+                            formControlName="password"
+                            class="w-full text-gray-800 border rounded-md focus:outline-none focus:ring-2 "
+                        ></p-password>
+                        <label for="password" class="text-gray-600">Password</label>
+                    </p-floatlabel>
+                    <app-validation-text class="absolute top-[38px] left-3" [form]="loginForm" field="password"></app-validation-text>
+                </div>
             </div>
 
-            <div class="flex justify-end">
-                <p-button label="Sign in" icon="pi pi-sign-in" type="submit" styleClass="primary-button" [disabled]="loginForm.invalid"  />
+            <!-- Submit Button -->
+            <div class="flex justify-end mt-10">
+                <p-button
+                    label="Sign in"
+                    icon="pi pi-sign-in"
+                    type="submit"
+                    styleClass="primary-button"
+                    [disabled]="loginForm.invalid"
+                    class=" text-white font-semibold rounded-md disabled:opacity-50"
+                ></p-button>
             </div>
-
         </form>
     </div>
 </div>
