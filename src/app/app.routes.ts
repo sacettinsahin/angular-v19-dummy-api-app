@@ -21,22 +21,26 @@ export const routes: Routes = [
         path:'',
         component: MainLayoutComponent,
         canActivate:[authGuard],
-        children:[
+        children: [
             {
-                path:'home',
-                component: HomeComponent
+                path: 'home',
+                loadComponent: () =>
+                    import('./pages/private/home/home.component').then((m) => m.HomeComponent)
             },
             {
-                path:'products',
-                component: ProductsComponent,
+                path: 'products',
+                loadComponent: () =>
+                    import('./pages/private/products/products.component').then((m) => m.ProductsComponent)
             },
             {
-                path:'categories',
-                component: CategoriesComponent,
+                path: 'categories',
+                loadComponent: () =>
+                    import('./pages/private/categories/categories.component').then((m) => m.CategoriesComponent)
             },
             {
-                path:'users',
-                component: UsersComponent,
+                path: 'users',
+                loadComponent: () =>
+                    import('./pages/private/users/users.component').then((m) => m.UsersComponent)
             }
         ]
     },
